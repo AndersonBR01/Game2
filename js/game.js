@@ -1,6 +1,9 @@
 //criando card
 const grid = document.querySelector('.grid');
 
+//timer
+const timer = document.querySelector('.timer');
+
 //pegando o nome do player
 const spanPlayer = document.querySelector('.player');
 
@@ -33,8 +36,11 @@ let secondCard = '';
 const checkEndGame = () =>{
     const disabledCards = document.querySelectorAll('.disabled-card');
     if (disabledCards.length ===20){
-        alert('Parabens vc achou todas as cartas ');
+        clearInterval(this.loop);
+        alert(`Parabéns, ${spanPlayer.innerHTML}!! Seu tempo foi de ${timer.innerHTML};`);
+
         window.location = 'trofeu.html'
+
     }
 } 
 
@@ -121,6 +127,17 @@ const loadGame = () => {
 
     });
 }
+
+//inicar ontempo 
+const startTime = () =>{
+
+    this.loop = setInterval(() =>{
+        //pegando o tempo atual e atualizando 
+        const currentTime = +timer.innerHTML;
+        timer.innerHTML = currentTime +1;
+
+    },1000);
+}
 //executa uma alguma coisa quando a tela estiver carregada 
 window.onload = () =>{
     //carrega o nome do localStorge ou recupera alguma coisa no local 
@@ -128,6 +145,7 @@ window.onload = () =>{
 
     spanPlayer.innerHTML = playerName;
 
+    startTime();
     loadGame();
 }
 //1°carrega a tela do game 
