@@ -1,6 +1,9 @@
 //criando card
 const grid = document.querySelector('.grid');
 
+//pegando o nome do player
+const spanPlayer = document.querySelector('.player');
+
 //lista character
 const characters =[
 'berrus',
@@ -118,5 +121,14 @@ const loadGame = () => {
 
     });
 }
+//executa uma alguma coisa quando a tela estiver carregada 
+window.onload = () =>{
+    //carrega o nome do localStorge ou recupera alguma coisa no local 
+    const playerName = localStorage.getItem('player');
 
-loadGame();
+    spanPlayer.innerHTML = playerName;
+
+    loadGame();
+}
+//1°carrega a tela do game 
+//loadGame();
